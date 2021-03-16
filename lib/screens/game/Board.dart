@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'components/Chips.dart';
-import 'components/DropButton.dart';
-import 'Player.dart';
+
+import '../../models/Player.dart';
+import '../../components/Chips.dart';
+import 'DropButton.dart';
+
 
 class Board extends StatefulWidget {
   final Player1 player1;
@@ -26,9 +28,7 @@ class _BoardState extends State<Board> {
   List<bool> showDrops = [true, true, true, true, true, true, true];
   List nodes = List.generate(7, (int index) {
     return List.generate(6, (int jIndex) {
-      // print("index $index");
       return new ChipNode(index, jIndex, Colors.white);
-      // return new ChipNode(jIndex, index, Colors.white);
     }, growable: false);
   }, growable: false);
 
@@ -41,29 +41,24 @@ class _BoardState extends State<Board> {
   }
 
   int findLength(String pId, int length, ChipNode prevNode, String dir) {
-    print("dir $dir length $length");
     if (length < 4) {
       if (dir == diagonalDown) {
         if (prevNode.x - 1 >= 0 && prevNode.y + 1 < 6 && nodes[prevNode.x - 1][prevNode.y + 1].pId == pId) {
-          print("d-down");
           return findLength(pId, length + 1, nodes[prevNode.x - 1][prevNode.y + 1], dir);
         }
       }
       if (dir == diagonalUp) {
         if (prevNode.x + 1 < 7 && prevNode.y + 1 < 6 && nodes[prevNode.x + 1][prevNode.y + 1].pId == pId) {
-          print("d-up");
           return findLength(pId, length + 1, nodes[prevNode.x + 1][prevNode.y + 1], dir);
         }
       }
       if (dir == horizontal) {
         if (prevNode.x + 1 < 7 && nodes[prevNode.x + 1][prevNode.y].pId == pId) {
-          print("d-hor");
           return findLength(pId, length + 1, nodes[prevNode.x + 1][prevNode.y], dir);
         }
       }
       if (dir == vertical) {
         if (prevNode.y + 1 < 6 && nodes[prevNode.x][prevNode.y + 1].pId == pId) {
-          print("d-vert");
           return findLength(pId, length + 1, nodes[prevNode.x][prevNode.y + 1], dir);
         }
       }

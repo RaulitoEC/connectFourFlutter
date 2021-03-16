@@ -47,7 +47,7 @@ class ChipNode {
     this.color = color;
   }
 
-
+  // neighbors not used in this version
   void setNeighbors(x, y) {
     this.left = y - 1 >= 0
       ? (x.toString() + '-' + (y - 1).toString())

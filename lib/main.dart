@@ -3,12 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './Player.dart';
-
-import './screens/GameScreen.dart';
-import './screens/StartScreen.dart';
-import './screens/SettingsScreen.dart';
-
+import 'models/Player.dart';
+import './routes.dart';
 
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -27,21 +23,12 @@ void main() {
   );
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: StartScreen.id,
-      routes: {
-        StartScreen.id: (context) => StartScreen(),
-        SettingsScreen.id: (context) => SettingsScreen(),
-        GameScreen.id: (context) => GameScreen(),
-      }
+      initialRoute: '/',
+      routes: routes
     );
   }
 }

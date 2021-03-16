@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './StartScreen.dart';
-import '../components/Chips.dart';
-import '../Player.dart';
-import '../Board.dart';
+
+import '../start/StartScreen.dart';
+import '../../components/Chips.dart';
+import '../../models/Player.dart';
+
+import 'Board.dart';
 
 class GameScreen extends StatelessWidget {
   static const String id = 'GameScreen';
