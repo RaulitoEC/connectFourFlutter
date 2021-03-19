@@ -18,27 +18,41 @@ class _SettingsScreen extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text('Player', style: TextStyle(decoration: TextDecoration.none)),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
-          children: <Widget>[
-            FlatButton(
-              onPressed: () {
-                setState(() { currentPlayer = 1; });
-              },
-              child: Text("Player 1", style: TextStyle(color: Colors.white))
-            ),
-            FlatButton(
-              onPressed: () {
-                setState(() { currentPlayer = 2; });
-              },
-              child: Text("Player 2", style: TextStyle(color: Colors.white))
-            ),
-          ]
+        Container(
+          height: 60,
+          color: Colors.grey[800],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() { currentPlayer = 1; });
+                    },
+                    child: Text("Player 1", style: TextStyle(color: Colors.white)),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.red[800])
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() { currentPlayer = 2; });
+                    },
+                    child: Text("Player 2", style: TextStyle(color: Colors.white.withOpacity(0.5))),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.red[800].withOpacity(0.5)),
+                    ),
+                  ),
+                ]
+              ),
+            ]
+          )
         ),
-        Text('choose your color', style: TextStyle(decoration: TextDecoration.none, fontSize: 20)),
         Builder(
           builder: (context) {
             return currentPlayer == 1
@@ -54,11 +68,13 @@ class _SettingsScreen extends State<SettingsScreen> {
               );
           }
         ),
-        FlatButton(
-          onPressed: () {
-            return Navigator.pushNamed(context, StartScreen.id);
-          },
-          child: Text("back", style: TextStyle(color: Colors.white))
+        ElevatedButton(
+          onPressed: () { return Navigator.pushNamed(context, StartScreen.id); },
+          child: Text("back", style: TextStyle(color: Colors.white)),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[800]),
+            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.fromLTRB(160, 15, 160, 15))
+          ),
         )
       ],
     );

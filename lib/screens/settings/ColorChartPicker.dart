@@ -48,6 +48,7 @@ class _ColorChartPicker extends State<ColorChartPicker> {
       rows.add(
         Row(
           mainAxisAlignment: MainAxisAlignment.center, // Center Row contents horizontally,
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: rowItems.toList()
         )
       );
@@ -61,9 +62,13 @@ class _ColorChartPicker extends State<ColorChartPicker> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Column(children: buildRows(),),
-        FlatButton(
+        ElevatedButton(
           onPressed: () { savePlayerColor(selectedColor); },
-          child: Text("Save", style: TextStyle(color: Colors.white))
+          child: Text("Save", style: TextStyle(color: Colors.white)),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.red[800]),
+            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.fromLTRB(160, 15, 160, 15))
+          ),
         ),
       ],
     );

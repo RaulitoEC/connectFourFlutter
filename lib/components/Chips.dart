@@ -16,10 +16,7 @@ class _ColorChip extends State<ColorChip> {
   Color color;
   Widget child;
 
-  _ColorChip(color, child) {
-    this.color = color;
-    this.child = child; // == null ? null : child;
-  }
+  _ColorChip(this.color, this.child);
 
   @override
   Widget build(BuildContext context) {
