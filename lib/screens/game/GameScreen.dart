@@ -23,7 +23,7 @@ class GameScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ColorChip(player1.color),
+                        ColorChip(UniqueKey(), player1.color, null),
                         Text(
                           "${player1.name} vs ${player2.name}",
                           style: TextStyle(
@@ -32,7 +32,7 @@ class GameScreen extends StatelessWidget {
                             fontSize: 20
                           )
                         ),
-                        ColorChip(player2.color),
+                        ColorChip(UniqueKey(), player2.color, null),
                       ],
                     ),
                     Board(player1, player2)

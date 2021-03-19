@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 
-class ColorChip extends StatelessWidget {
+class ColorChip extends StatefulWidget {
   final Color color;
+  final Widget child;
 
-  ColorChip(this.color);
+  ColorChip(key, this.color, this.child) : super(key: key);
+
+  ColorChip.composed(this.color, this.child);
+
+  @override
+  _ColorChip createState() => _ColorChip(color, child);
+}
+
+class _ColorChip extends State<ColorChip> {
+  Color color;
+  Widget child;
+
+  _ColorChip(color, child) {
+    this.color = color;
+    this.child = child; // == null ? null : child;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,73 +28,30 @@ class ColorChip extends StatelessWidget {
       height : 50.0,
       decoration : new BoxDecoration(
         color : color,
-        shape : BoxShape.circle
+        shape : BoxShape.circle,
       ),
+      child: child,
     );
   }
 }
 
-class ChipNode {
-  Color color;
-  String pId;
-  int x;
-  int y;
+class SelectableChip extends StatelessWidget {
+  final Color color;
+  final bool isSelected;
+  final void Function(Color) onTap;
 
-  String left;
-  String topLeft;
-  String top;
-  String topRight;
-  String right;
-  String bottomRight;
-  String bottom;
-  String bottomLeft;
+  SelectableChip(key, this.color, this.isSelected, this.onTap) : super(key: key);
 
-  ChipNode(x, y, color) {
-    this.x = x;
-    this.y = y;
-    this.color = color;
-    setNeighbors(x, y);
-  }
-
-  ChipNode.withPlayer(this.x, this.y, pId, color) {
-    this.x = x;
-    this.y = y;
-    this.pId = pId;
-    this.color = color;
-  }
-
-  // neighbors not used in this version
-  void setNeighbors(x, y) {
-    this.left = y - 1 >= 0
-      ? (x.toString() + '-' + (y - 1).toString())
-      : '';
-
-    this.topLeft = y - 1 >= 0 && x + 1 <= 5
-      ? ((x + 1).toString() + '-' + (y - 1).toString())
-      : '';
-
-    this.top = x + 1 <= 5
-      ? ((x + 1).toString() + '-' + y.toString())
-      : '';
-
-    this.topRight = x + 1 <= 5 && y + 1 <= 6
-      ? ((x + 1).toString() + '-' + (y + 1).toString())
-      : '';
-
-    this.right = y + 1 <= 6
-      ? (x.toString() + '-' + (y + 1).toString())
-      : '';
-
-    this.bottomRight = x - 1 >= 0 && y + 1 <= 6
-      ? ((x - 1).toString() + '-' + (y + 1).toString())
-      : '';
-
-    this.bottom = x - 1 >= 0
-      ? ((x - 1).toString() + '-' + y.toString())
-      : '';
-
-    this.bottomLeft = x - 1 >= 0 && y - 1 >= 0
-      ? ((x - 1).toString() + '-' + (y - 1).toString())
-      : '';
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: InkWell(
+        child: ColorChip.composed(
+          color,
+          isSelected ? Icon(Icons.mouse, size:30,) : null,
+        ),
+        onTap: () { onTap(color); },
+      )
+    );
   }
 }
