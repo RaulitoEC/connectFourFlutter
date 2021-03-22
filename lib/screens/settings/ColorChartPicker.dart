@@ -48,7 +48,6 @@ class _ColorChartPicker extends State<ColorChartPicker> {
       rows.add(
         Row(
           mainAxisAlignment: MainAxisAlignment.center, // Center Row contents horizontally,
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: rowItems.toList()
         )
       );
@@ -67,7 +66,7 @@ class _ColorChartPicker extends State<ColorChartPicker> {
           child: Text("Save", style: TextStyle(color: Colors.white)),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.red[800]),
-            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.fromLTRB(160, 15, 160, 15))
+            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.fromLTRB(150, 15, 150, 15))
           ),
         ),
       ],

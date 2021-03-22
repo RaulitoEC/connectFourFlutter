@@ -42,6 +42,7 @@ class SelectableChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.white.withOpacity(0),
       child: InkWell(
         child: ColorChip.composed(
           color,
