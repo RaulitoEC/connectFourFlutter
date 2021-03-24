@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/Player.dart';
 import '../start/StartScreen.dart';
+import '../../components/Buttons.dart';
 
 import './PlayerPicker.dart';
 import './ColorChartPicker.dart';
@@ -26,6 +27,7 @@ class _SettingsScreen extends State<SettingsScreen> {
           child: CustomPaint(
             size: Size(392.7, 60),
             painter: PlayerPicker(30, 160, currentPlayer),
+            // seems this Expanded Widget is wrong.
             child: Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -71,13 +73,8 @@ class _SettingsScreen extends State<SettingsScreen> {
                   );
               }
             ),
-            ElevatedButton(
-              onPressed: () { return Navigator.pushNamed(context, StartScreen.id); },
-              child: Text("back", style: TextStyle(color: Colors.white)),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[800]),
-                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.fromLTRB(150, 15, 150, 15))
-              ),
+            BackBtn(
+              () { return Navigator.pushNamed(context, StartScreen.id); }
             )
           ],)
         
